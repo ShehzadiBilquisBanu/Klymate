@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { WeatherProvider } from './providers/weather-provider'
+import { RandomImageProvider } from './providers/random-image-provider'
 import { AppComponent } from './app.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +19,7 @@ import { HttpModule } from '@angular/http';
     
   ],
   providers: [
-    WeatherProvider
+    RandomImageProvider
   ],
   bootstrap: [AppComponent]
 })

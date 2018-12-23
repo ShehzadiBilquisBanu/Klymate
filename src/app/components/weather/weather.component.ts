@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherProvider } from '../../providers/weather-provider';
+import { RandomImageProvider } from '../../providers/random-image-provider';
 
 @Component({
   selector: 'Weather',
@@ -9,17 +9,17 @@ import { WeatherProvider } from '../../providers/weather-provider';
 })
 export class WeatherComponent implements OnInit {
 
-  backgroungImageUrl: string = '';
+  backgroungImageUrl: string = 'https://images.unsplash.com/photo-1526395639805-284e7aa3656c?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQ3NjYwfQ';
   locationName: string = 'Paris';
   
-  constructor(private weatherProvider : WeatherProvider) { }
+  constructor(private randomImageProvider : RandomImageProvider) { }
 
   ngOnInit() {
     this.getRandomImageUrl();
   }
 
   getRandomImageUrl() {
-    this.weatherProvider.getRandomPhotos(this.locationName).subscribe((response: any) => {
+    this.randomImageProvider.getRandomPhotos(this.locationName).subscribe((response: any) => {
       this.backgroungImageUrl = response.urls.regular;
       console.log(this.backgroungImageUrl); 
     })
