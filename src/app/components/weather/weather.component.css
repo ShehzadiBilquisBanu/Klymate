@@ -1,5 +1,9 @@
-:host {
-    background-color: green;
-    size: 200px 200px;
-    display: block;
+.bg-image {
+    height: 100vh;
+    width: 35%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: 100% 100% ;
+    
 }
