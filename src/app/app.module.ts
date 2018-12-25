@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { WeatherProvider } from './providers/weather-provider';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HttpModule } from '@angular/http';
     
   ],
   providers: [
-    RandomImageProvider
+    RandomImageProvider,
+    WeatherProvider
   ],
   bootstrap: [AppComponent]
 })
