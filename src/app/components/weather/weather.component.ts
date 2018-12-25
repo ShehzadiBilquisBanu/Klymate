@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RandomImageProvider } from '../../providers/random-image-provider';
-import { WeatherProvider } from '../../providers/weather-provider';
+import { RandomImageProvider } from '../../providers/random-image-provider/random-image-provider';
+import { WeatherProvider } from '../../providers/weather-provider/weather-provider';
 
 @Component({
   selector: 'Weather',
