@@ -1,82 +1,72 @@
 .bg-image {
-    background-image: url(https://images.pexels.com/photos/53594/blue-clouds-day-fluffy-53594.jpeg?cs=srgb&dl=blue-clouds-day-53594.jpg&fm=jpg);
-    height: 100vh;
-    width: 30%;
-    background-position: center center;
-    background-repeat: no-repeat;
-    object-fit: cover; 
+  height: 100vh;
+  width: 30%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align: center;
+  object-fit: cover
+}
+
+.bg-grey {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(27, 27, 27, 0.64);
+}
+
+.weather-info {
+  position: relative;
+  top: 10%;
+  display: inline-block;
 }
 
 .weather-icon {
-  position: relative;
-  /* position: absolute;   */    
-  top: 15%; 
-   /* margin-left: auto;
-    margin-right: auto;  */
-   
-    float: left;
-    padding-left: 150px;
-    display: block; 
-    
-} 
-p.temperature {
-    padding-left: 15px;
-    vertical-align: middle;
-    top:25%;
-    
-    font-family: 'Quicksand';
-    font-size: 40px;
-    color: white;
- 
- line-height: 30pt; 
-    
+  height: 260px;
+  width: 260px;
 }
+
+p.temperature {
+  vertical-align: middle;
+  top: 25%;
+  font-family: Raleway;
+  font-weight: bold;
+  font-size: 58px;
+  color: white;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
 hr {
-   
-    background-color: white;
-      height: 2px;
-      }
+  background-color: white;
+  height: 3px;
+  width: 38px;
+  border-radius: 16px;
+  border-style: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 p.status {
-    font-family: "Quicksand Bold Regular", Arial;
-    color: white;
-    font-family: Raleway; 
-    font-size: 20px; 
-    font-style: normal; 
-    font-variant: normal; 
-    font-weight: 700; 
-    line-height: 26.4px;
-
+  color: white;
+  font-family: Raleway;
+  font-size: 28px;
+  line-height: 26.4px;
+  margin-top: 16px;
 }
 
-
- .location-icon {
-    position: absolute;
-    bottom: 20px;
-  padding-left: 5px; 
-    float: left;
-    
+.location-icon {
+  position: absolute;
+  bottom: 20px;
+  padding-left: 30px;
+  float: left;
 }
 
 .location {
-    position: absolute;
-    bottom: 2px; 
-    font-family: "Quicksand Bold Regular", Arial;
-    color: white;
-/*display: inline; */
-
-    padding-left: 35px;
-    font-size:20px;
-    font-family: "Quicksand Bold Regular", Arial;
-    color: white;
-    font-family: Raleway; 
-    font-size: 20px; 
-    font-style: normal; 
-    font-variant: normal; 
-    font-weight: 700; 
-    line-height: 26.4px;
-
-
-} 
-
- 
+  position: absolute;
+  bottom: 2px;
+  color: white;
+  padding-left: 60px;
+  font-size: 20px;
+  font-family: Raleway;
+  font-weight: 700;
+  line-height: 26.4px;
+}
