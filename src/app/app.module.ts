@@ -8,10 +8,13 @@ import { HttpModule } from '@angular/http';
 import { WeatherProvider } from './providers/weather-provider/weather-provider';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherComponent
+    WeatherComponent,
+  
+ 
   ],
   imports: [
     BrowserModule,

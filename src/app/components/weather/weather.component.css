@@ -4,13 +4,14 @@
   background-position: center center;
   background-repeat: no-repeat;
   text-align: center;
-  object-fit: cover
+  background-size: cover;
 }
 
 .bg-grey {
   height: 100%;
   width: 100%;
   background-color: rgba(27, 27, 27, 0.64);
+  
 }
 
 .weather-info {
@@ -29,7 +30,7 @@ p.temperature {
   top: 25%;
   font-family: Raleway;
   font-weight: bold;
-  font-size: 58px;
+  font-size: 50px;
   color: white;
   margin-bottom: 0;
   margin-top: 0;
