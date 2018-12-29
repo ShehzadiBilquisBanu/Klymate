@@ -14,10 +14,7 @@ export class WeatherComponent implements OnInit {
   locationName: string = 'Chennai';
   weatherTemperature:any = '';
   weatherDetails:any = [];
-  weatherIcon:any='';
-  weatherDesc:any = '';
-  weatherStatus:any = '';
-  
+
   constructor(private randomImageProvider: RandomImageProvider,
               private weatherProvider: WeatherProvider) { }
 
@@ -36,16 +33,11 @@ export class WeatherComponent implements OnInit {
   }
 
   getWeatherInfo() {
-    this.weatherProvider.getWeatherDetails().subscribe((response:any) => {
+    this.weatherProvider.getWeatherDetails(this.locationName).subscribe((response:any) => {
       this.weatherTemperature=response.main.temp;
       this.weatherDetails=response.weather[0];
-      this.weatherIcon=this.weatherDetails.icon;
-      this.weatherDesc = this.weatherDetails.description;
-      this.weatherStatus = this.weatherDetails.main;
       this.locationName = response.name;
       console.log(this.locationName);
-      console.log(this.weatherDesc);
-      console.log(this.weatherIcon);
       console.log(this.weatherDetails);
       console.log(this.weatherTemperature); 
       console.log(response);

@@ -7,7 +7,7 @@
       <div style="text-align: center;">
         <img
           class="weather-icon"
-          src="http://openweathermap.org/img/w/{{weatherIcon}}.png"
+          src="http://openweathermap.org/img/w/{{weatherDetails.icon}}.png"
           alt="weather-icon"/>
         <link
           rel="stylesheet"
@@ -16,9 +16,9 @@
         <p class="temperature">{{weatherTemperature}}&deg;<span style="font-size: 36px;">c</span></p>
         <hr width="25px" />
         <p class="status">
-          {{weatherStatus}}
+          {{weatherDetails.main}}
           <br>
-          <span style="font-size: 18px;">{{weatherDesc}}</span>
+          <span style="font-size: 18px;">{{weatherDetails.description}}</span>
         </p>
       </div>
     </div>
