@@ -1,3 +1,4 @@
+import { WeatherInfo } from './../../entities/weather-info';
 import { Component, OnInit } from '@angular/core';
 import { RandomImageProvider } from '../../providers/random-image-provider/random-image-provider';
 import { WeatherProvider } from '../../providers/weather-provider/weather-provider';
@@ -11,36 +12,29 @@ import { HttpHeaderResponse } from '@angular/common/http';
 export class WeatherComponent implements OnInit {
 
   backgroungImageUrl: string = '';
-  locationName: string = 'Chennai';
-  weatherTemperature:any = '';
-  weatherDetails:any = [];
+  locationName: string = 'Paris';
+  weatherTemperature: number = 0;
+  weatherInfo: WeatherInfo = <WeatherInfo>{};
 
   constructor(private randomImageProvider: RandomImageProvider,
               private weatherProvider: WeatherProvider) { }
 
   ngOnInit() {
-  // this.backgroungImageUrl = 'https://images.unsplash.com/photo-1464606203924-507eec7f5e52?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQ3NjYwfQ';
- this.getRandomImageUrl();
-  this.getWeatherInfo();
-
+    // this.backgroungImageUrl = 'https://images.unsplash.com/photo-1464606203924-507eec7f5e52?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQ3NjYwfQ';
+    this.getRandomImageUrl();
+    this.getWeatherInfo();
   }
 
   getRandomImageUrl() {
     this.randomImageProvider.getRandomPhotos(this.locationName).subscribe((response: any) => {
       this.backgroungImageUrl = response.urls.regular;
-      console.log(response);
     });
   }
 
   getWeatherInfo() {
-    this.weatherProvider.getWeatherDetails(this.locationName).subscribe((response:any) => {
-      this.weatherTemperature=response.main.temp;
-      this.weatherDetails=response.weather[0];
-      this.locationName = response.name;
-      console.log(this.locationName);
-      console.log(this.weatherDetails);
-      console.log(this.weatherTemperature); 
-      console.log(response);
+    this.weatherProvider.getWeatherDetails(this.locationName).subscribe((response: any) => {
+      this.weatherTemperature = response.main.temp;
+      this.weatherInfo = response.weather[0];
     });
   }
 }
