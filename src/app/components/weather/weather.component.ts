@@ -12,7 +12,7 @@ import { HttpHeaderResponse } from '@angular/common/http';
 export class WeatherComponent implements OnInit {
 
   backgroungImageUrl: string = '';
-  locationName: string = 'Timbuktu';
+  locationName: string = 'Chennai';
   weatherTemperature: number = 0;
   weatherInfo: WeatherInfo = <WeatherInfo>{};
 
