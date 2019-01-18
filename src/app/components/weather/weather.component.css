@@ -10,9 +10,8 @@
 .bg-grey {
   height: 100%;
   width: 100%;
-  background-color: rgba(27, 27, 27, 0.64);
-  
-}
+  background-color: rgba(27, 27, 27, 0.64);  
+} 
 
 .weather-info {
   position: relative;
@@ -21,8 +20,9 @@
 }
 
 .weather-icon {
-  height: 150px;
-  width: 150px;
+  height: 200px;
+  width: 200px;
+  margin-top: 80px;
 }
 
 p.temperature {
@@ -71,3 +71,4 @@ p.status {
   font-weight: 700;
   line-height: 26.4px;
 }
+

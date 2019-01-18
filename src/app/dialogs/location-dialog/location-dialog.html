@@ -1,0 +1,11 @@
+<form class="example-form">
+  <h1 mat-dialog-title>Select Location</h1>
+  <mat-form-field class="example-full-width" width="100%" [floatLabel]="'never'">
+    <input [formControl]="queryField" matInput placeholder="Type something"  >
+  </mat-form-field>
+  <div mat-dialog-actions align="end">
+    <button mat-button (click)="onClose()">Close</button>
+  </div>
+</form>
+
+
