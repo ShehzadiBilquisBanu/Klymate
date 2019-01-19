@@ -4,8 +4,7 @@ import { RandomImageProvider } from '../../providers/random-image-provider/rando
 import { WeatherProvider } from '../../providers/weather-provider/weather-provider';
 import { MatDialog } from '@angular/material';
 import { LocationDialog } from '../../dialogs/location-dialog/location-dialog';
-import { LocationProvider } from '../../providers/location-provider/location-provider';
-import { FormControl } from '@angular/forms';
+import { LatLng } from "../../entities/location-suggestion";
 
 @Component({
   selector: 'weather',
@@ -15,6 +14,7 @@ import { FormControl } from '@angular/forms';
 export class WeatherComponent implements OnInit {
 
   locationName: string = 'Chennai';
+  latLng: LatLng = {Latitude: 13.08363, Longitude: 80.28252};
   backgroungImageUrl: string = '';
   weatherTemperature: number = 0;
   weatherInfo: WeatherInfo = <WeatherInfo>{};
@@ -36,7 +36,7 @@ export class WeatherComponent implements OnInit {
   }
 
   getWeatherInfo() {
-    this.weatherProvider.getWeatherDetails(this.locationName).subscribe((response: any) => {
+    this.weatherProvider.getWeatherDetails(this.latLng).subscribe((response: any) => {
       this.weatherTemperature = response.main.temp;
       this.weatherInfo = response.weather[0];
     });
@@ -44,10 +44,12 @@ export class WeatherComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(LocationDialog, {
-      width: '300px',
+      width: '450px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.latLng = result.latLng;
+      this.locationName = result.locationName;
+      this.ngOnInit();
     });
   }
 }

@@ -1,11 +1,19 @@
 <form class="example-form">
   <h1 mat-dialog-title>Select Location</h1>
-  <mat-form-field class="example-full-width" width="100%" [floatLabel]="'never'">
-    <input [formControl]="queryField" matInput placeholder="Type something"  >
+  <mat-form-field class="example-full-width" width="100%" [floatLabel]="'never'" >
+    <input name="searchText"
+           matInput
+           placeholder="Type something"
+           [formControl]="searchField"
+      [matAutocomplete]="auto">
   </mat-form-field>
+  <mat-autocomplete #auto="matAutocomplete"
+                    (optionSelected)="getLocationDetails($event)">
+    <mat-option *ngFor="let suggestion of suggestions" [value]="suggestion">
+      <p [innerHTML]="suggestion?.label"></p>
+    </mat-option>
+  </mat-autocomplete>
   <div mat-dialog-actions align="end">
     <button mat-button (click)="onClose()">Close</button>
   </div>
 </form>
-
-

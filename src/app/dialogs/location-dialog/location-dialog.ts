@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import {FormControl} from '@angular/forms';
-import { debounceTime, map, startWith } from 'rxjs/operators';
 import { LocationProvider } from '../../providers/location-provider/location-provider';
+import { Address, LocationSuggestion } from "../../entities/location-suggestion";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { FormControl } from "@angular/forms";
 
 
 @Component({
@@ -12,32 +13,48 @@ import { LocationProvider } from '../../providers/location-provider/location-pro
 })
 export class LocationDialog implements OnInit {
 
-  searchTextResults: any[] = [];
-  queryField: FormControl = new FormControl();
-  places: string[];
-  searchText = 'Chennai';
+  searchField: FormControl = new FormControl();
+  suggestions: LocationSuggestion[] = [];
 
   constructor(public dialogRef: MatDialogRef<LocationDialog>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               public locationProvider: LocationProvider) {
   }
 
-  ngOnInit() {
-    this.getPlaces();
+  ngOnInit(): void {
+    this.searchField.valueChanges
+      .pipe(debounceTime(1000), distinctUntilChanged())
+      .subscribe(() => {
+        this.searchField.value
+          ? this.getSuggestions(this.searchField.value)
+          : this.suggestions = [];
+      });
   }
 
   onClose(): void {
     this.dialogRef.close();
   }
 
-  onSave(): void {
-    console.log('save button is pressed');
+  getSuggestions(searchText: string) {
+    this.locationProvider.getPlaceSuggestions(searchText)
+      .subscribe(response => {
+        this.suggestions = response.suggestions;
+      });
   }
 
-  getPlaces() {
-    this.queryField.valueChanges.pipe(debounceTime(500))
-      .subscribe(queryField => this.locationProvider.getPlaceSuggestions(queryField).subscribe((response: any) =>
-        console.log(response.suggestions[0].address)));
-
+  getLocationDetails(event: any) {
+    let selectedSuggestion: LocationSuggestion = event.option.value;
+    let address: Address = selectedSuggestion.address;
+    let location = `${address.city? address.city : ''}, ` +
+                      `${address.state? address.state : ''}, ` +
+                      `${address.country? address.country : ''}`;
+    this.searchField.setValue(location);
+    this.locationProvider.getLocationDetails(selectedSuggestion.locationId)
+      .subscribe((response: any) => {
+        this.dialogRef.close({
+          latLng: response.Response.View[0].Result[0].Location.DisplayPosition,
+          locationName: response.Response.View[0].Result[0].Location.Address.County
+        });
+      });
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { LatLng } from "../../entities/location-suggestion";
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,11 @@ export class WeatherProvider {
 
   constructor(private httpClient: HttpClient) { }
 
-  getWeatherDetails(locationName: string): Observable<any> {
+  getWeatherDetails(latLng: LatLng): Observable<any> {
     return this.httpClient.get(this.url, {
       params: {
-        q: locationName
+        lat: '' + latLng.Latitude,
+        lon: '' + latLng.Longitude
       }
     });
   }
