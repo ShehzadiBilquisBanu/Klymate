@@ -39,22 +39,26 @@ export class LocationDialog implements OnInit {
     this.locationProvider.getPlaceSuggestions(searchText)
       .subscribe(response => {
         this.suggestions = response.suggestions;
+        console.log(this.suggestions);
       });
   }
 
   getLocationDetails(event: any) {
     let selectedSuggestion: LocationSuggestion = event.option.value;
     let address: Address = selectedSuggestion.address;
-    let location = `${address.city? address.city : ''}, ` +
-                      `${address.state? address.state : ''}, ` +
-                      `${address.country? address.country : ''}`;
+  /*  let location = `${address.city ? address.city : ''}, ` +
+                      `${address.state ? address.state : ''}, ` +
+                      `${address.country ? address.country : ''}`;     */
+
+    let getlocation = `${ address.city ? address.city : address.county ? address.county : address.state ? address.state : address.country ? address.country : '' }`;
+    let location = getlocation.replace(/(<([^>]+)>)/ig, '');
     this.searchField.setValue(location);
     this.locationProvider.getLocationDetails(selectedSuggestion.locationId)
       .subscribe((response: any) => {
         this.dialogRef.close({
           latLng: response.Response.View[0].Result[0].Location.DisplayPosition,
-          locationName: response.Response.View[0].Result[0].Location.Address.County
-        });
+          locationName: location
+          });
       });
   }
 }
